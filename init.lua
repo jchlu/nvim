@@ -10,6 +10,8 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  use 'mattn/emmet-vim'
+  use 'christoomey/vim-tmux-navigator'
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -106,6 +108,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+--
+-- Set the system clipboard
+vim.o.clipboard = "unnamedplus"
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -151,6 +156,8 @@ vim.g.maplocalleader = ' '
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
+vim.keymap.set('n', 'n', 'nzz', { silent = true })
+vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr><C-l>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
