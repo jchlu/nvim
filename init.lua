@@ -24,7 +24,7 @@ require('packer').startup(function(use)
       config = function() require'nvim-rooter'.setup() end
     }
   }
-  
+
   use { 'mg979/vim-visual-multi' }
 
 
@@ -157,7 +157,10 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
-vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr><C-l>')
+vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
+vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
+vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -191,8 +194,8 @@ require('Comment').setup()
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 -- require('indent_blankline').setup {
-  -- char = '┊',
-  -- show_trailing_blankline_indent = false,
+-- char = '┊',
+-- show_trailing_blankline_indent = false,
 -- }
 
 -- Gitsigns
