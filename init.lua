@@ -12,6 +12,7 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'mattn/emmet-vim'
   use 'christoomey/vim-tmux-navigator'
+  use 'norcalli/nvim-colorizer.lua'
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -366,7 +367,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'tailwindcss', 'tsserver', 'sumneko_lua' }
+local servers = { 'tailwindcss', 'tsserver', 'cssls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
