@@ -463,5 +463,15 @@ cmp.setup {
   },
 }
 
+-- Use the `default_options` as the second parameter, which uses
+-- `foreground` for every mode. This is the inverse of the previous
+-- setup configuration.
+require 'colorizer'.setup({
+  '*';
+}, { 
+    hsl_fn = true;
+    rgb_fn = true;
+  })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
