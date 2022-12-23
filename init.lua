@@ -13,6 +13,7 @@ require('packer').startup(function(use)
   use 'mattn/emmet-vim'
   use 'christoomey/vim-tmux-navigator'
   use 'norcalli/nvim-colorizer.lua'
+  use 'amadeus/vim-convert-color-to'
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -460,11 +461,6 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
-}
-
-require 'colorizer'.setup {
-  '*'; -- Highlight all files, but customize some others.
-  css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
