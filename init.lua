@@ -152,6 +152,7 @@ vim.o.completeopt = 'menuone,noselect'
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.user_emmet_leader_key='<C-m>'
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -376,6 +377,16 @@ local servers = { 'tailwindcss', 'tsserver', 'cssls', 'sumneko_lua' }
 require('mason-lspconfig').setup {
   ensure_installed = servers,
 }
+
+-- Filter out the CommonJS module message
+require('lspconfig').tsserver.setup({
+    on_attach = function(client, bufnr)
+        require('nvim-lsp-ts-utils').setup({
+            filter_out_diagnostics_by_code = { 80001 },
+        })
+        require('nvim-lsp-ts-utils').setup_client(client)
+    end,
+})
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
