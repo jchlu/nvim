@@ -217,6 +217,15 @@ require('gitsigns').setup {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        height = 0.99,
+        width = 0.99,
+        preview_cutoff = 1,
+      }
+      -- other layout configuration here
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -380,12 +389,12 @@ require('mason-lspconfig').setup {
 
 -- Filter out the CommonJS module message
 require('lspconfig').tsserver.setup({
-    on_attach = function(client, bufnr)
-        require('nvim-lsp-ts-utils').setup({
-            filter_out_diagnostics_by_code = { 80001 },
-        })
-        require('nvim-lsp-ts-utils').setup_client(client)
-    end,
+  on_attach = function(client, bufnr)
+    require('nvim-lsp-ts-utils').setup({
+      filter_out_diagnostics_by_code = { 80001 },
+    })
+    require('nvim-lsp-ts-utils').setup_client(client)
+  end,
 })
 
 -- nvim-cmp supports additional completion capabilities
