@@ -1,6 +1,7 @@
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
+vim.g.loaded_python3_provider = 0
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
@@ -169,6 +170,10 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
+vim.keymap.set('n', 'zc', 'zczz', { silent = true })
+vim.keymap.set('n', 'zo', 'zozz', { silent = true })
+vim.keymap.set('n', 'zR', 'zRgg', { silent = true })
+vim.keymap.set('n', 'zM', 'zMgg', { silent = true })
 vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
 vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
@@ -329,7 +334,8 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
-
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
