@@ -15,7 +15,7 @@ require('packer').startup(function(use)
   use 'christoomey/vim-tmux-navigator'
   use 'norcalli/nvim-colorizer.lua'
   use 'amadeus/vim-convert-color-to'
-
+  use 'mbbill/undotree'
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -178,6 +178,7 @@ vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
 vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
 vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
+vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
