@@ -374,6 +374,7 @@ require('nvim-treesitter.configs').setup {
 }
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.cursorline = true
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
@@ -551,3 +552,4 @@ require 'colorizer'.setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ff8a33' } )
