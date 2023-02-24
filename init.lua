@@ -46,7 +46,7 @@ require('packer').startup(function(use)
   }
 
   use 'prettier/vim-prettier' -- Add Prettier
-  
+
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -99,6 +99,8 @@ require('packer').startup(function(use)
   }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+  use "akinsho/toggleterm.nvim"
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -437,7 +439,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'tailwindcss', 'tsserver', 'cssls', 'sumneko_lua' }
+local servers = { 'tailwindcss', 'tsserver', 'cssls', 'lua_ls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -475,7 +477,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
