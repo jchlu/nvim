@@ -65,16 +65,16 @@ require('packer').startup(function(use)
   }
 
   -- Git related plugins
- use {
+  use {
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
     requires = {
-        "nvim-lua/plenary.nvim",
+      "nvim-lua/plenary.nvim",
     },
- }
- -- use 'tpope/vim-fugitive'
- -- use 'tpope/vim-rhubarb'
- use 'lewis6991/gitsigns.nvim'
+  }
+  -- use 'tpope/vim-fugitive'
+  -- use 'tpope/vim-rhubarb'
+  use 'lewis6991/gitsigns.nvim'
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
@@ -92,7 +92,7 @@ require('packer').startup(function(use)
       require("telescope").load_extension("live_grep_args")
     end
   }
-   -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
+  -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",

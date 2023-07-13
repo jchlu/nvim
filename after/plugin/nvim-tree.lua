@@ -97,8 +97,11 @@ local function on_attach(bufnr)
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
   vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
 
+  vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
+  vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
   vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
-  vim.keymap.set('n', '<C-s>', '<Esc><cmd>update<cr>')
+  vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
+  vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
   vim.keymap.set('n', '<leader>gg', '<Esc><cmd>LazyGit<cr>')
 
 end
@@ -121,7 +124,7 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
   update_cwd = true,
-    update_focused_file = {
+  update_focused_file = {
     enable = true,
     update_cwd = true
   },
