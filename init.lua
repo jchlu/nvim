@@ -187,44 +187,44 @@ vim.g.user_emmet_leader_key='<C-m>'
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
-vim.keymap.set('n', 'n', 'nzz', { silent = true })
-vim.keymap.set('n', 'zc', 'zczz', { silent = true })
-vim.keymap.set('n', 'zo', 'zozz', { silent = true })
-vim.keymap.set('n', 'zR', 'zRgg', { silent = true })
-vim.keymap.set('n', 'zM', 'zMgg', { silent = true })
-vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
-vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
-vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
-vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- remaps for Trouble
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-  {silent = true, noremap = true}
-)
-
+-- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
+-- vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
+-- vim.keymap.set('n', 'n', 'nzz', { silent = true })
+-- vim.keymap.set('n', 'zc', 'zczz', { silent = true })
+-- vim.keymap.set('n', 'zo', 'zozz', { silent = true })
+-- vim.keymap.set('n', 'zR', 'zRgg', { silent = true })
+-- vim.keymap.set('n', 'zM', 'zMgg', { silent = true })
+-- vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
+-- vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
+-- vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
+-- vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
+-- vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
+-- 
+-- -- Remap for dealing with word wrap
+-- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+-- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- 
+-- -- remaps for Trouble
+-- vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
+--   {silent = true, noremap = true}
+-- )
+-- vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+--   {silent = true, noremap = true}
+-- )
+-- vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
+--   {silent = true, noremap = true}
+-- )
+-- vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+--   {silent = true, noremap = true}
+-- )
+-- vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+--   {silent = true, noremap = true}
+-- )
+-- vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+--   {silent = true, noremap = true}
+-- )
+-- 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -318,7 +318,7 @@ vim.keymap.set('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { n
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'typescript', 'help' },
+  ensure_installed = { 'lua', 'typescript', 'vimdoc' },
 
   highlight = { enable = true },
   indent = { enable = true },
