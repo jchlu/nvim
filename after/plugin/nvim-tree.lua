@@ -122,3 +122,8 @@ require("nvim-tree").setup({
     update_cwd = true
   },
 })
+
+vim.api.nvim_create_autocmd('BufReadPost,FileReadPost', {
+  command = 'normal zR',
+  pattern = '*',
+})
