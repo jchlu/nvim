@@ -97,6 +97,10 @@ local function on_attach(bufnr)
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
   vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
 
+  vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
+  vim.keymap.set('n', '<C-s>', '<Esc><cmd>update<cr>')
+  vim.keymap.set('n', 'gg', '<Esc><cmd>Git<cr>')
+
 end
 -- OR setup with some options
 require("nvim-tree").setup({
