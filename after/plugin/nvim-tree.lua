@@ -99,7 +99,7 @@ local function on_attach(bufnr)
 
   vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
   vim.keymap.set('n', '<C-s>', '<Esc><cmd>update<cr>')
-  vim.keymap.set('n', 'gg', '<Esc><cmd>Git<cr>')
+  vim.keymap.set('n', '<leader>gg', '<Esc><cmd>LazyGit<cr>')
 
 end
 -- OR setup with some options
