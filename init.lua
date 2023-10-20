@@ -18,6 +18,7 @@ require('packer').startup(function(use)
   use 'mbbill/undotree'
   use 'folke/tokyonight.nvim'
   use 'tpope/vim-commentary'
+  use 'stevearc/oil.nvim'
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
