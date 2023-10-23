@@ -106,25 +106,6 @@ local function on_attach(bufnr)
   -- Remap for dealing with word wrap
   vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
   vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-  -- remaps for Trouble
-  vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-    {silent = true, noremap = true}
-  )
-  vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-    {silent = true, noremap = true}
-  )
-  vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-    {silent = true, noremap = true}
-  )
-  vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-    {silent = true, noremap = true}
-  )
-  vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-    {silent = true, noremap = true}
-  )
-  vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-    {silent = true, noremap = true}
-  )
 end
 -- OR setup with some options
 require("nvim-tree").setup({
