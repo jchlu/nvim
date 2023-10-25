@@ -18,6 +18,7 @@ require('packer').startup(function(use)
   use 'mbbill/undotree'
   use 'folke/tokyonight.nvim'
   use 'tpope/vim-commentary'
+  use 'jchlu/lualine-time'
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -253,6 +254,9 @@ require('lualine').setup {
     component_separators = '|',
     section_separators = '',
   },
+  sections = {
+        lualine_z = {'location', 'ctime'}
+  }
 }
 
 -- Enable Comment.nvim
