@@ -356,6 +356,9 @@ vim.keymap.set('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { n
 vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
 vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
 
+vim.keymap.set('n', '<leader>o', '<cmd>call append(line("."),   repeat([""], v:count1))<cr>')
+vim.keymap.set('n', '<leader>O', '<cmd>call append(line(".")-1,   repeat([""], v:count1))<cr>')
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
