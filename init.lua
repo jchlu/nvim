@@ -33,7 +33,6 @@ require('packer').startup(function(use)
 
   use { 'mg979/vim-visual-multi' }
 
-
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
@@ -488,7 +487,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'tailwindcss', 'tsserver', 'cssls', 'lua_ls', 'pyright' }
+local servers = { 'tailwindcss', 'tsserver', 'cssls', 'lua_ls', 'pyright', 'emmet_ls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
