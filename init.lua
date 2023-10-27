@@ -11,8 +11,8 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
-  use 'mattn/emmet-vim'
-  use 'christoomey/vim-tmux-navigator'
+  -- use 'mattn/emmet-vim'
+  -- use 'christoomey/vim-tmux-navigator'
   use 'norcalli/nvim-colorizer.lua'
   use 'amadeus/vim-convert-color-to'
   use 'mbbill/undotree'
@@ -64,6 +64,8 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
+
+
 
   -- Git related plugins
   use {
