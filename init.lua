@@ -111,6 +111,30 @@ require('packer').startup(function(use)
 
   use "akinsho/toggleterm.nvim"
   use "wuelnerdotexe/vim-astro"
+  use({
+    "stevearc/conform.nvim",
+    config = function()
+      local conform = require("conform")
+      conform.setup({
+        formatters_by_ft = {
+          -- lua = { "stylua" },
+          -- Conform will run multiple formatters sequentially
+          -- python = { "isort", "black" },
+          -- Use a sub-list to run only the first available formatter
+          javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescriptreact = { "prettierd" },
+        },
+      })
+      vim.keymap.set({ "n", "v" }, "<leader>ff", function()
+      conform.format({
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 500,
+      })
+    end, { desc = "Format file or range (in visual mode)" })
+    end,
+  })
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -255,7 +279,7 @@ require('lualine').setup {
     section_separators = '',
   },
   sections = {
-        lualine_z = {'location', 'ctime'}
+    lualine_z = {'location', 'ctime'}
   }
 }
 
