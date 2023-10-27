@@ -4,7 +4,7 @@ local is_bootstrap = false
 vim.g.loaded_python3_provider = 0
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
-  vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
   vim.cmd [[packadd packer.nvim]]
 end
 
@@ -27,7 +27,7 @@ require('packer').startup(function(use)
     -- tag = 'nightly' -- optional, updated every week. (see issue #1193)
     use {
       'notjedi/nvim-rooter.lua',
-      config = function() require'nvim-rooter'.setup() end
+      config = function() require 'nvim-rooter'.setup() end
     }
   }
 
@@ -48,7 +48,7 @@ require('packer').startup(function(use)
 
   use 'prettier/vim-prettier' -- Add Prettier
 
-  use { -- Autocompletion
+  use {                       -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
@@ -80,8 +80,8 @@ require('packer').startup(function(use)
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim'     -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'          -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim',
@@ -127,12 +127,12 @@ require('packer').startup(function(use)
         },
       })
       vim.keymap.set({ "n", "v" }, "<leader>ff", function()
-      conform.format({
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
-      })
-    end, { desc = "Format file or range (in visual mode)" })
+        conform.format({
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        })
+      end, { desc = "Format file or range (in visual mode)" })
     end,
   })
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
@@ -199,7 +199,7 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 require("tokyonight").setup({
-  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+  style = "moon",     -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   transparent = true, -- Enable this to disable setting the background color
 })
 
@@ -216,7 +216,7 @@ vim.o.completeopt = 'menuone,noselect'
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.user_emmet_leader_key='<C-m>'
+vim.g.user_emmet_leader_key = '<C-m>'
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -233,11 +233,11 @@ vim.g.user_emmet_leader_key='<C-m>'
 -- vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
 -- vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
 -- vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
--- 
+--
 -- -- Remap for dealing with word wrap
 -- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
--- 
+--
 -- -- remaps for Trouble
 -- vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
 --   {silent = true, noremap = true}
@@ -257,7 +257,7 @@ vim.g.user_emmet_leader_key='<C-m>'
 -- vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
 --   {silent = true, noremap = true}
 -- )
--- 
+--
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -279,7 +279,7 @@ require('lualine').setup {
     section_separators = '',
   },
   sections = {
-    lualine_z = {'location', 'ctime'}
+    lualine_z = { 'location', 'ctime' }
   }
 }
 
@@ -347,7 +347,8 @@ vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { des
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 -- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
@@ -591,12 +592,12 @@ cmp.setup {
 -- `foreground` for every mode. This is the inverse of the previous
 -- setup configuration.
 require 'colorizer'.setup({
-  '*';
+  '*',
 }, {
-    hsl_fn = true;
-    rgb_fn = true;
-  })
+  hsl_fn = true,
+  rgb_fn = true,
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ff8a33' } )
+vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ff8a33' })
