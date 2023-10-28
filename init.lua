@@ -201,7 +201,7 @@ vim.wo.signcolumn = 'yes'
 
 require("tokyonight").setup({
   style = "moon",     -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  transparent = true, -- Enable this to disable setting the background color
+  -- transparent = true, -- Enable this to disable setting the background color
 })
 
 -- Set colorscheme
@@ -274,7 +274,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
