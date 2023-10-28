@@ -359,7 +359,13 @@ vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
 
 vim.keymap.set('n', '<leader>o', '<cmd>call append(line("."),   repeat([""], v:count1))<cr>')
 vim.keymap.set('n', '<leader>O', '<cmd>call append(line(".")-1,   repeat([""], v:count1))<cr>')
-
+vim.keymap.set('n', '<leader>tb', function()
+  if vim.opt['bg']:get() == 'dark' then
+    vim.opt['bg'] = 'light'
+  else
+    vim.opt['bg'] = 'dark'
+  end
+end)
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
