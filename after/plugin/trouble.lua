@@ -14,6 +14,9 @@
   vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
     {silent = true, noremap = true}
   )
+  vim.keymap.set("n", "<leader>cq", "<cmd>cexpr []<cr>",
+    {silent = true, noremap = true}
+  )
   vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
     {silent = true, noremap = true}
   )
