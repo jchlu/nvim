@@ -122,9 +122,9 @@ require('packer').startup(function(use)
           -- Conform will run multiple formatters sequentially
           -- python = { "isort", "black" },
           -- Use a sub-list to run only the first available formatter
-          javascript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescriptreact = { "prettier" },
+          javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescriptreact = { "prettierd" },
         },
       })
       vim.keymap.set({ "n", "v" }, "<leader>ff", function()
