@@ -200,7 +200,7 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 require("tokyonight").setup({
-  style = "moon",     -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   -- transparent = true, -- Enable this to disable setting the background color
 })
 
