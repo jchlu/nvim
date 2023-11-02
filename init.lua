@@ -366,6 +366,17 @@ vim.keymap.set('n', '<leader>tb', function()
     vim.opt['bg'] = 'dark'
   end
 end)
+vim.keymap.set('n', '<leader>tw', function()
+  if vim.opt['wrap']:get() == true then
+    vim.opt['wrap'] = false
+  else
+    vim.opt['wrap'] = true
+  end
+end)
+vim.keymap.set('n', '<C-h>', '<C-W>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-j>', '<C-W>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', '<C-W>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-l>', '<C-W>l', { noremap = true, silent = true })
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
