@@ -102,7 +102,6 @@ local function on_attach(bufnr)
   vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
   vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
   vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
-  vim.keymap.set('n', '<leader>gg', '<Esc><cmd>LazyGit<cr>')
   -- Remap for dealing with word wrap
   vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
   vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
