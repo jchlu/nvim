@@ -377,6 +377,8 @@ vim.keymap.set('n', '<C-h>', '<C-W>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-j>', '<C-W>j', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-k>', '<C-W>k', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-l>', '<C-W>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
@@ -615,9 +617,9 @@ cmp.setup {
 require 'colorizer'.setup({
   '*',
 }, {
-  hsl_fn = true,
-  rgb_fn = true,
-})
+    hsl_fn = true,
+    rgb_fn = true,
+  })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
