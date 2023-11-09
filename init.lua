@@ -11,12 +11,34 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  use { 'folke/neodev.nvim',
+    config = function() require("neodev").setup() end
+  }
   -- use 'mattn/emmet-vim'
   -- use 'christoomey/vim-tmux-navigator'
-  use 'norcalli/nvim-colorizer.lua'
+  use { 'norcalli/nvim-colorizer.lua',
+    config = function()
+      -- Use the `default_options` as the second parameter, which uses
+      -- `foreground` for every mode. This is the inverse of the previous
+      -- setup configuration.
+      require 'colorizer'.setup({
+        '*',
+      }, {
+        hsl_fn = true,
+        rgb_fn = true,
+      })
+    end
+  }
   use 'amadeus/vim-convert-color-to'
   use 'mbbill/undotree'
-  use 'folke/tokyonight.nvim'
+  use { 'folke/tokyonight.nvim',
+    config = function()
+      require("tokyonight").setup({
+        style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+        -- transparent = true, -- Enable this to disable setting the background color
+      })
+    end
+  }
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'jchlu/lualine-time'
@@ -45,10 +67,8 @@ require('packer').startup(function(use)
       'j-hui/fidget.nvim',
     },
   }
-
-  use 'prettier/vim-prettier' -- Add Prettier
-
-  use {                       -- Autocompletion
+  -- use 'prettier/vim-prettier' -- Add Prettier
+  use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
@@ -64,8 +84,6 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
-
-
 
   -- Git related plugins
   use {
@@ -169,98 +187,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
--- [[ Setting options ]]
--- See `:help vim.o`
---
--- Set the system clipboard
-vim.o.clipboard = "unnamedplus"
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.wrap = false
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
-
-require("tokyonight").setup({
-  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  -- transparent = true, -- Enable this to disable setting the background color
-})
-
--- Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme tokyonight]]
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- [[ Basic Keymaps ]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.g.user_emmet_leader_key = '<C-m>'
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
--- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
--- vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
--- vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
--- vim.keymap.set('n', 'n', 'nzz', { silent = true })
--- vim.keymap.set('n', 'zc', 'zczz', { silent = true })
--- vim.keymap.set('n', 'zo', 'zozz', { silent = true })
--- vim.keymap.set('n', 'zR', 'zRgg', { silent = true })
--- vim.keymap.set('n', 'zM', 'zMgg', { silent = true })
--- vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
--- vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
--- vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
--- vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
--- vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
---
--- -- Remap for dealing with word wrap
--- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
--- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
---
--- -- remaps for Trouble
--- vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
---   {silent = true, noremap = true}
--- )
--- vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
---   {silent = true, noremap = true}
--- )
--- vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
---   {silent = true, noremap = true}
--- )
--- vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
---   {silent = true, noremap = true}
--- )
--- vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
---   {silent = true, noremap = true}
--- )
--- vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
---   {silent = true, noremap = true}
--- )
---
--- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -307,141 +233,6 @@ require('gitsigns').setup {
   },
 }
 
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-  defaults = {
-    layout_strategy = 'vertical',
-    layout_config = {
-      vertical = {
-        height = 0.99,
-        width = 0.99,
-        preview_cutoff = 1,
-      }
-      -- other layout configuration here
-    },
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
-
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
-
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader><space>', function()
-  require("buffer_manager.ui").toggle_quick_menu()
-end, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
--- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-  { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
-
-vim.keymap.set('n', '<leader>o', '<cmd>call append(line("."),   repeat([""], v:count1))<cr>')
-vim.keymap.set('n', '<leader>O', '<cmd>call append(line(".")-1,   repeat([""], v:count1))<cr>')
-vim.keymap.set('n', '<leader>tb', function()
-  if vim.opt['bg']:get() == 'dark' then
-    vim.opt['bg'] = 'light'
-  else
-    vim.opt['bg'] = 'dark'
-  end
-end)
-vim.keymap.set('n', '<leader>tw', function()
-  if vim.opt['wrap']:get() == true then
-    vim.opt['wrap'] = false
-  else
-    vim.opt['wrap'] = true
-  end
-end)
-vim.keymap.set('n', '<C-h>', '<C-W>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-j>', '<C-W>j', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-k>', '<C-W>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-l>', '<C-W>l', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'typescript', 'vimdoc' },
-
-  highlight = { enable = true },
-  indent = { enable = true },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
-      swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-      },
-    },
-  },
-}
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.cursorline = true
@@ -569,59 +360,5 @@ require('lspconfig').lua_ls.setup {
   },
 }
 
--- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
--- Use the `default_options` as the second parameter, which uses
--- `foreground` for every mode. This is the inverse of the previous
--- setup configuration.
-require 'colorizer'.setup({
-  '*',
-}, {
-    hsl_fn = true,
-    rgb_fn = true,
-  })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
-vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ff8a33' })
+require('global.options')
+require('global/keymaps')
