@@ -98,8 +98,6 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
 
   vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeToggle<cr>')
-  vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
-  vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
   vim.keymap.set('n', '<leader>ia', 'mzgg=G`zzz')
   vim.keymap.set('n', '<leader>cz', '<cmd>UndotreeToggle<cr>', { silent = true })
   -- Remap for dealing with word wrap

@@ -8,8 +8,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.user_emmet_leader_key = '<C-m>'
 
-vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>')
+--[[ vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
+vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>') ]]
 
 vim.keymap.set('n', '<leader>o', '<cmd>call append(line("."),   repeat([""], v:count1))<cr>')
 vim.keymap.set('n', '<leader>O', '<cmd>call append(line(".")-1,   repeat([""], v:count1))<cr>')
@@ -77,4 +77,3 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 --   {silent = true, noremap = true}
 -- )
 --
-
