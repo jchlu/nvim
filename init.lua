@@ -11,6 +11,7 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  use 'christoomey/vim-tmux-navigator'
   use { 'folke/neodev.nvim',
     config = function() require("neodev").setup() end
   }
@@ -31,14 +32,15 @@ require('packer').startup(function(use)
   }
   use 'amadeus/vim-convert-color-to'
   use 'mbbill/undotree'
-  use { 'folke/tokyonight.nvim',
+  use { "catppuccin/nvim", as = "catppuccin" }
+  --[[ use { 'folke/tokyonight.nvim',
     config = function()
       require("tokyonight").setup({
         style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
         -- transparent = true, -- Enable this to disable setting the background color
       })
     end
-  }
+  } ]]
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'jchlu/lualine-time'

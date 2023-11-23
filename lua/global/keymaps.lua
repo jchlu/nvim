@@ -27,10 +27,10 @@ vim.keymap.set('n', '<leader>tw', function()
     vim.opt['wrap'] = true
   end
 end)
-vim.keymap.set('n', '<C-h>', '<C-W>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-j>', '<C-W>j', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-k>', '<C-W>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-l>', '<C-W>l', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-h>', '<C-W>h', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-j>', '<C-W>j', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-k>', '<C-W>k', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-l>', '<C-W>l', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 

@@ -32,12 +32,11 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme tokyonight]]
-
+-- vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme catppuccin]] -- " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ff8a33' })
-
