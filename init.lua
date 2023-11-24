@@ -11,6 +11,17 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  use { "catppuccin/nvim", as = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        integrations = {
+          mason = true,
+          lsp_trouble = true,
+        }
+      })
+      vim.cmd [[colorscheme catppuccin-frappe]] -- " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+    end
+  }
   use 'christoomey/vim-tmux-navigator'
   use { 'folke/neodev.nvim',
     config = function() require("neodev").setup() end
@@ -32,7 +43,6 @@ require('packer').startup(function(use)
   }
   use 'amadeus/vim-convert-color-to'
   use 'mbbill/undotree'
-  use { "catppuccin/nvim", as = "catppuccin" }
   --[[ use { 'folke/tokyonight.nvim',
     config = function()
       require("tokyonight").setup({
@@ -100,10 +110,26 @@ require('packer').startup(function(use)
   -- use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use { 'nvim-lualine/lualine.nvim', -- Fancier statusline
+    -- Set lualine as statusline
+    -- See `:help lualine.txt`
+    config = function()
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'catppuccin',
+          component_separators = '|',
+          section_separators = '',
+        },
+        sections = {
+          lualine_z = { 'location', 'ctime' }
+        }
+      }
+    end
+  }
   -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim'     -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth'          -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'      -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim',
@@ -171,6 +197,13 @@ require('packer').startup(function(use)
         })
         vim.cmd "update"
       end, { desc = "Format file or range (in visual mode) and save file" })
+      vim.keymap.set({ "n", "v" }, "<leader>ff", function()
+        conform.format({
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        })
+      end, { desc = "Format file or range (in visual mode)" })
     end,
   })
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
@@ -215,19 +248,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Set lualine as statusline
--- See `:help lualine.txt`
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'tokyonight',
-    component_separators = '|',
-    section_separators = '',
-  },
-  sections = {
-    lualine_z = { 'location', 'ctime' }
-  }
-}
 
 -- Enable Comment.nvim
 require('Comment').setup()

@@ -33,7 +33,6 @@ vim.wo.signcolumn = 'yes'
 -- Set colorscheme
 vim.o.termguicolors = true
 -- vim.cmd [[colorscheme tokyonight]]
-vim.cmd [[colorscheme catppuccin]] -- " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
