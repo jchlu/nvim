@@ -19,6 +19,7 @@ require('packer').startup(function(use)
           lsp_trouble = true,
         }
       })
+      vim.cmd [[colorscheme catppuccin-macchiato]] -- " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
     end
   }
   use 'christoomey/vim-tmux-navigator'
@@ -335,7 +336,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'tailwindcss', 'tsserver', 'cssls', 'lua_ls', 'emmet_ls' }
+local servers = { 'tailwindcss', 'tsserver', 'cssls', 'lua_ls', 'html', 'htmx' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
