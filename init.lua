@@ -19,7 +19,6 @@ require('packer').startup(function(use)
           lsp_trouble = true,
         }
       })
-      vim.cmd [[colorscheme catppuccin-mocha]] -- " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
     end
   }
   use 'christoomey/vim-tmux-navigator'
