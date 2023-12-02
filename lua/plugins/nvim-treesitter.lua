@@ -6,7 +6,7 @@ return { -- Highlight, edit, and navigate code
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter-textobjects',
 	},
-	config = {
+	opts = {
 		-- Add languages to be installed here that you want installed for treesitter
 		ensure_installed = { 'lua', 'typescript', 'vimdoc' },
 

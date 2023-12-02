@@ -1,7 +1,8 @@
 return {
 	{
 		"catppuccin/nvim",
-		as = "catppuccin",
+		name = "catppuccin",
+		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
 				integrations = {
@@ -36,28 +37,16 @@ return {
 	'amadeus/vim-convert-color-to',
 	'mbbill/undotree',
 	--[[ use { 'folke/tokyonight.nvim',
-    config = function()
-      require("tokyonight").setup({
+	config = function()
+	require("tokyonight").setup({
 	style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
 	-- transparent = true, -- Enable this to disable setting the background color
-      })
-    end
-  } ]]
+	})
+	end
+	} ]]
 	'tpope/vim-commentary',
 	'tpope/vim-surround',
 	'jchlu/lualine-time',
-	{
-		'nvim-tree/nvim-tree.lua',
-		dependencies = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icons
-		},
-		-- tag = 'nightly' -- optional, updated every week. (see issue #1193)
-		{
-			'notjedi/nvim-rooter.lua',
-			config = function() require 'nvim-rooter'.setup() end
-		},
-	},
-
 	{ 'mg979/vim-visual-multi' },
 
 	{ -- LSP Configuration & Plugins
@@ -103,30 +92,7 @@ return {
 	'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
 	'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-	-- Fuzzy Finder (files, lsp, etc)
-	{
-		'nvim-telescope/telescope.nvim',
-		branch = '0.1.x',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			"nvim-telescope/telescope-live-grep-args.nvim"
-		},
-		config = function()
-			require("telescope").load_extension("live_grep_args")
-		end
-	},
 	-- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
-	{
-		"folke/trouble.nvim",
-		dependencies = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("trouble").setup {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			}
-		end
-	},
 	-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
 	'wuelnerdotexe/vim-astro',
