@@ -12,9 +12,12 @@ require('telescope').setup {
       -- other layout configuration here
     },
     mappings = {
+      n = {
+        ['<c-d>'] = require('telescope.actions').delete_buffer
+      },
       i = {
         ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ['<c-d>'] = require('telescope.actions').delete_buffer,
       },
     },
   },
@@ -25,8 +28,8 @@ pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader><space>', function()
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sb', function()
   require("buffer_manager.ui").toggle_quick_menu()
 end, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
