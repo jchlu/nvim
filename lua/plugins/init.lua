@@ -128,9 +128,7 @@ return {
 		end
 	},
 	-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
-	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make',                             cond = vim.fn.executable 'make' == 1 },
-	{ 'kevinhwang91/nvim-ufo',                    dependencies = 'kevinhwang91/promise-async' },
-	'akinsho/toggleterm.nvim',
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
 	'wuelnerdotexe/vim-astro',
 	{
 		"stevearc/conform.nvim",
