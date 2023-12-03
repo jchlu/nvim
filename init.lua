@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- Set colorscheme
 vim.o.termguicolors = true
 require('lazy').setup('plugins')
