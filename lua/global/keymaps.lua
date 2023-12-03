@@ -7,10 +7,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.user_emmet_leader_key = '<C-m>'
-
---[[ vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<C-s>', '<Esc><cmd>update<cr>') ]]
-
 vim.keymap.set('n', '<leader>o', '<cmd>call append(line("."),   repeat([""], v:count1))<cr>')
 vim.keymap.set('n', '<leader>O', '<cmd>call append(line(".")-1,   repeat([""], v:count1))<cr>')
 vim.keymap.set('n', '<leader>tb', function()
@@ -27,12 +23,14 @@ vim.keymap.set('n', '<leader>tw', function()
     vim.opt['wrap'] = true
   end
 end)
--- vim.keymap.set('n', '<C-h>', '<C-W>h', { noremap = true, silent = true })
--- vim.keymap.set('n', '<C-j>', '<C-W>j', { noremap = true, silent = true })
--- vim.keymap.set('n', '<C-k>', '<C-W>k', { noremap = true, silent = true })
--- vim.keymap.set('n', '<C-l>', '<C-W>l', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 
 
