@@ -8,7 +8,7 @@ return { -- Highlight, edit, and navigate code
 	},
 	opts = {
 		-- Add languages to be installed here that you want installed for treesitter
-		ensure_installed = { 'lua', 'typescript', 'vimdoc' },
+		ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'astro', 'html', 'typescript' },
 
 		highlight = { enable = true },
 		indent = { enable = true },
