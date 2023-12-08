@@ -41,9 +41,6 @@ return {
 			{ desc = '[?] Find recently opened files' })
 		vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,
 			{ desc = '[ ] Find existing buffers' })
-		vim.keymap.set('n', '<leader>sb', function()
-			require("buffer_manager.ui").toggle_quick_menu()
-		end, { desc = '[ ] Find existing buffers' })
 		vim.keymap.set('n', '<leader>/', function()
 			-- You can pass additional configuration to telescope to change theme, layout, etc.
 			require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
