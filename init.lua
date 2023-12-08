@@ -1,31 +1,31 @@
+-- Bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.o.termguicolors = true
-require('lazy').setup('plugins')
--- Set colorscheme
-vim.cmd [[colorscheme tokyonight-moon]]
 
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = '*',
+-- This has to be set before initializing lazy
+vim.g.mapleader = " "
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- Initialize lazy with dynamic loading of anything in the plugins directory
+require("lazy").setup("plugins", {
+   change_detection = {
+    enabled = true, -- automatically check for config file changes and reload the ui
+    notify = false, -- turn off notifications whenever plugin changes are made
+  },
 })
 
-require('global.options')
-require('global/keymaps')
+-- These modules are not loaded by lazy
+require("core.options")
+require("core.keymaps")

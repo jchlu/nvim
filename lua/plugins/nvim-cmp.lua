@@ -1,74 +1,51 @@
-local M = {
-  "hrsh7th/nvim-cmp",
-  version = false, -- last release is way too old
-  event = "InsertEnter",
+-- Auto-completion / Snippets
+return {
+  'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "saadparwaiz1/cmp_luasnip",
+    -- Snippet Engine & its associated nvim-cmp source
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+
+    -- Adds LSP completion capabilities
+    'hrsh7th/cmp-nvim-lsp',
+
+    -- Adds a number of user-friendly snippets
+    'rafamadriz/friendly-snippets',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
   },
-  opts = function()
-    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-    local cmp = require("cmp")
-    local defaults = require("cmp.config.default")()
-    return {
-      completion = {
-        completeopt = "menu,menuone,noinsert",
-      },
+  config = function()
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
+
+    vim.opt.completeopt = "menu,menuone,noselect"
+
+    cmp.setup({
       snippet = {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<S-CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<C-CR>"] = function(fallback)
-          cmp.abort()
-          fallback()
-        end,
+        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<Tab>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- scroll backward
+        ["<C-f>"] = cmp.mapping.scroll_docs(4), -- scroll forward
+        ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(), -- clear completion window
+        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- confirm selection
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "path" },
-      }, {
-        { name = "buffer" },
+        { name = "nvim_lsp" }, -- lsp 
+        { name = "luasnip" }, -- snippets
+        { name = "buffer" }, -- text within current buffer
+        { name = "path" }, -- file system paths
       }),
-      --[[ formatting = {
-        format = function(_, item)
-          local icons = require("lazyvim.config").icons.kinds
-          if icons[item.kind] then
-            item.kind = icons[item.kind] .. item.kind
-          end
-          return item
-        end,
-      }, ]]
-      experimental = {
-        ghost_text = {
-          hl_group = "CmpGhostText",
-        },
-      },
-      sorting = defaults.sorting,
-    }
+    })
   end,
-  ---@param opts cmp.ConfigSchema
-  config = function(_, opts)
-    for _, source in ipairs(opts.sources) do
-      source.group_index = source.group_index or 1
-    end
-    require("cmp").setup(opts)
-  end,
-}
+ }
 
-return M
