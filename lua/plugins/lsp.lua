@@ -9,12 +9,12 @@ return {
     { 'williamboman/mason-lspconfig.nvim' },
 
     -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',                opts = {} },
 
     -- Additional lua configuration, makes nvim stuff amazing!
-    {'folke/neodev.nvim' },
+    { 'folke/neodev.nvim' },
   },
-  config = function ()
+  config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
       -- Update this list to the language servers you need installed
@@ -31,7 +31,7 @@ return {
         -- "lemminx",
         "marksman",
         "quick_lint_js",
-        "tsserver",-- # requires npm to be installed
+        "tsserver", -- # requires npm to be installed
         -- "yamlls", # requires npm to be installed
       }
     })
@@ -58,11 +58,10 @@ return {
         Lua = {
           diagnostics = {
             -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
+            globals = { 'vim' },
           },
         },
       },
     }
   end
 }
-
