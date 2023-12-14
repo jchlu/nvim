@@ -1,3 +1,4 @@
+local matchup = require "plugins.vim-matchup"
 -- Code Tree Support / Syntax Highlighting
 return {
   'nvim-treesitter/nvim-treesitter',
@@ -7,6 +8,7 @@ return {
   },
   build = ':TSUpdate',
   opts = {
+    matchup = { enable = true },
     highlight = {
       enable = true,
     },
@@ -16,9 +18,8 @@ return {
       'lua',
     },
   },
-  config = function (_, opts)
+  config = function(_, opts)
     local configs = require("nvim-treesitter.configs")
     configs.setup(opts)
   end
 }
-
