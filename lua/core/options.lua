@@ -1,23 +1,25 @@
 local opt = vim.opt
 
 -- Session Management
-opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Line Numbers
 opt.relativenumber = true
 opt.number = true
 
 -- Tabs & Indentation
-opt.tabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
-vim.bo.softtabstop = 2
+vim.bo.softtabstop = 4
 
 -- Line Wrapping
 opt.wrap = false
 
 -- Search Settings
+opt.hlsearch = false
+opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
 
@@ -50,3 +52,5 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
 
+-- Performance
+opt.updatetime = 50
