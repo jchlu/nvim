@@ -12,6 +12,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- @jchlu - Add automatic apply of chezmoi file changes
+local group = vim.api.nvim_create_augroup('jchlu', { clear = true })
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
+
+autocmd('BufWritePost', {
+    pattern = '*/.local/share/chezmoi/*',
+    command = '! chezmoi apply --source-path "%"',
+    group = group
+})
 -- This has to be set before initializing lazy
 vim.g.mapleader = " "
 vim.g.loaded_node_provider = 0
