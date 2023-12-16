@@ -24,12 +24,13 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- Cursor Line
-opt.cursorline = true
+-- opt.cursorline = true
 
 -- Appearance
 opt.termguicolors = true
-opt.background = "dark"
+-- opt.background = "dark"
 opt.signcolumn = "yes"
+opt.scrolloff = 8
 
 -- Backspace
 opt.backspace = "indent,eol,start"
@@ -38,8 +39,8 @@ opt.backspace = "indent,eol,start"
 opt.clipboard:append("unnamedplus")
 
 -- Split Windows
-opt.splitright = true
-opt.splitbelow = true
+-- opt.splitright = true
+-- opt.splitbelow = true
 
 -- Consider - as part of keyword
 opt.iskeyword:append("-")
